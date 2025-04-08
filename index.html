@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ID Input Section</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      <style>
+  /* General Styling */
+  body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+  }
+
+  .id-section {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 24px;
+    max-width: 600px;
+    margin: 0 auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .id-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .step-number {
+    background-color: #007bff;
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 50%;
+    font-weight: bold;
+    margin-right: 12px;
+    font-size: 16px;
+  }
+
+  .id-title {
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  .id-input-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .id-input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    flex: 1 1 200px;
+    min-width: 0;
+  }
+
+  .id-input.small {
+    width: 100px;
+  }
+
+  .bracket {
+    font-size: 20px;
+    color: #666;
+  }
+
+  .caption-input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+  }
+
+  .upload-section {
+    margin-top: 20px;
+  }
+
+  .upload-section label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  #payment-screenshot {
+    padding: 8px;
+  }
+
+  /* 🔥 Responsive Grid for Payment Type */
+  .payment-type {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 16px;
+    margin-top: 20px;
+  }
+
+  .payment {
+    padding: 10px;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .payment img {
+    width: 100%;
+    height: auto;
+    margin-top: 8px;
+    border-radius: 6px;
+  }
+
+  /* Optional: Responsive tweaks */
+  @media (max-width: 600px) {
+    .id-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .step-number {
+      margin-bottom: 8px;
+    }
+  }
+</style>
+
+    </style>
+  </head>
+  <body>
+    <div style="display: flex; justify-content: center; align-items: center">
+      <!-- ID Input Section -->
+      <div class="id-section">
+        <div class="id-header">
+          <span class="step-number">1</span>
+          <span class="id-title">အသုံးပြုသူ ID ထည့်သွင်းပါ</span>
+        </div>
+
+        <div class="id-input-container">
+          <input
+            type="text"
+            class="id-input"
+            id="in_game_id"
+            placeholder="အသုံးပြုသူ ID ထည့်သွင်းပါ"
+          />
+          <input
+            type="text"
+            class="id-input small"
+            id="zone_id"
+            placeholder="ဇုန် ID"
+          />
+        </div>
+        <div>
+          <input
+            type="text"
+            class="caption-input"
+            id="image-caption"
+            placeholder="Enter In-game Name"
+          />
+        </div>
+
+        <!-- Screenshot Upload -->
+        <div class="upload-section">
+          <label for="payment-screenshot"
+            >Payment Screenshot for Confirmation</label
+          >
+          <input type="file" id="payment-screenshot" accept="image/*" />
+        </div>
+      </div>
+      <div class="payment-type">
+        <div class="payment">
+          <div>kpay</div>
+          <img
+            src="kpay.jpg"
+            style="width: 100%; height: 100%; object-fit: contain;"
+            alt="Loading"
+          />
+        </div>
+        <div class="payment">
+          <div>wavepay</div>
+          <img
+            src="wavepay.jpg"
+            style="width: 100%; height: 100%; object-fit: contain;"
+            alt="Loading"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- Card Display Section -->
+    <h2>Available Diamonds Price List</h2>
+    <div id="card-container"></div>
+
+    <script>
+      let latestCardData = [];
+
+      // Listen for file upload event
+      document
+        .getElementById("payment-screenshot")
+        .addEventListener("change", function (e) {
+          const file = e.target.files[0];
+          if (file) {
+            window.uploadedImage = file; // Store the file object
+          }
+        });
+
+      // Handle "Buy Now" button click
+      function handleBuy(index) {
+        let in_game_id = document.getElementById("in_game_id").value;
+        let zone_id = document.getElementById("zone_id").value;
+        let selected = latestCardData[index];
+
+        if (!in_game_id || !zone_id) {
+          alert("Please enter both in-game ID and zone ID first.");
+          return;
+        }
+
+        if (!window.uploadedImage) {
+          alert("Please upload an image before proceeding.");
+          return;
+        }
+
+        const caption =
+          document.getElementById("image-caption").value ||
+          "No caption provided";
+
+        const botToken = "7937988041:AAGHLlHc-FLpBph-vtpzcnKwL3ScWqCvf6Q";
+        const chatId = "6964651434";
+
+        const message = `
+          💎 Diamond Purchase Request
+          🎮 User ID: ${in_game_id}
+          🌐 Zone ID: ${zone_id}
+          📦 Item: ${selected.id}
+          🔢 Quantity: ${selected.quantity}
+          💰 Price: ${selected.price}
+        `.trim();
+
+        const requestPayload = {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            chat_id: chatId,
+            text: message,
+          }),
+        };
+
+        fetch(
+          `https://api.telegram.org/bot${botToken}/sendMessage`,
+          requestPayload
+        )
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.ok) {
+              alert("Purchase request sent to Telegram!");
+              sendImageToTelegram(window.uploadedImage, caption); // Send the image with caption if uploaded
+            } else {
+              alert("Failed to send message.");
+            }
+          });
+      }
+
+      // Function to send image to Telegram with caption
+      function sendImageToTelegram(file, caption) {
+        const botToken = "7937988041:AAGHLlHc-FLpBph-vtpzcnKwL3ScWqCvf6Q";
+        const chatId = "6964651434";
+
+        const formData = new FormData();
+        formData.append("chat_id", chatId);
+        formData.append("photo", file); // Send the actual file, not base64
+        formData.append("caption", caption); // Add the caption
+
+        fetch(`https://api.telegram.org/bot${botToken}/sendPhoto`, {
+          method: "POST",
+          body: formData,
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.ok) {
+              console.log("Image sent to Telegram with caption!");
+            } else {
+              console.log("Failed to send image.");
+            }
+          });
+      }
+
+      // Fetch latest messages from Telegram
+      async function getLatestMessage() {
+        let botToken = "7937988041:AAGHLlHc-FLpBph-vtpzcnKwL3ScWqCvf6Q";
+        const res = await fetch(
+          `https://api.telegram.org/bot${botToken}/getUpdates`
+        );
+        const data = await res.json();
+
+        if (data.result.length > 0) {
+          const latestUpdate = data.result[data.result.length - 1];
+          if (latestUpdate.message && latestUpdate.message.text) {
+            const message = latestUpdate.message.text;
+            const parsedData = parseMessage(message);
+            displayCards(parsedData);
+          }
+        } else {
+          console.log("No updates found.");
+        }
+      }
+
+      // Parse the message text into structured data
+      function parseMessage(message) {
+        const lines = message.split("\n");
+        const data = [];
+
+        for (let i = 0; i < lines.length; i++) {
+          const id = lines[i]?.split(":")[1]?.trim();
+          const quantity = lines[i + 1]?.split(":")[1]?.trim();
+          const price = lines[i + 2]?.split(":")[1]?.trim();
+
+          if (id && quantity && price) {
+            data.push({ id, quantity, price });
+          }
+        }
+
+        return data;
+      }
+
+      // Display the cards in the container
+      function displayCards(data) {
+        latestCardData = data;
+        const container = document.getElementById("card-container");
+        container.innerHTML = "";
+
+        data.forEach((item, index) => {
+          const card = document.createElement("div");
+          card.className = "card";
+
+          const cardHeader = document.createElement("div");
+          cardHeader.className = "card-header";
+          cardHeader.innerHTML = `<h2>Diamond #${item.id}</h2>`;
+
+          const cardBody = document.createElement("div");
+          cardBody.className = "card-body";
+          cardBody.innerHTML = `
+            <p><strong>Quantity:</strong> ${item.quantity}</p>
+            <p><strong>Price:</strong> ${item.price}</p>
+          `;
+
+          const cardFooter = document.createElement("div");
+          cardFooter.className = "card-footer";
+          cardFooter.innerHTML = `<a href="#" onclick="handleBuy(${index})">Buy Now</a>`;
+
+          card.appendChild(cardHeader);
+          card.appendChild(cardBody);
+          card.appendChild(cardFooter);
+          container.appendChild(card);
+        });
+      }
+
+      // Get the latest messages initially
+      getLatestMessage();
+      // Set interval to check for new messages
+      setInterval(getLatestMessage, 5000);
+    </script>
+  </body>
+</html>

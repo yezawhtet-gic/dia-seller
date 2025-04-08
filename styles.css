@@ -1,0 +1,135 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+ 
+h2 {
+    margin-top: 30px;
+    color: #333;
+}
+ 
+.id-section {
+    background: #fff;
+    padding: 20px;
+    margin: 20px auto;
+    width: 90%;
+    max-width: 400px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+ 
+.id-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+ 
+.step-number {
+    background: #007bff;
+    color: white;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+ 
+.id-input-container {
+    margin-top: 15px;
+}
+ 
+.id-input {
+    width: 80%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+ 
+.bracket-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+ 
+.small {
+    width: 50px;
+}
+ 
+.bracket {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0 5px;
+}
+ 
+.btn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+ 
+.btn:hover {
+    background-color: #0056b3;
+}
+ 
+#card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+}
+ 
+.card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 15px;
+    padding: 20px;
+    width: 250px;
+    transition: transform 0.3s ease;
+}
+ 
+.card:hover {
+    transform: translateY(-5px);
+}
+ 
+.card-header {
+    background-color: #eee;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+ 
+.card-body {
+    font-size: 16px;
+    color: #333;
+}
+ 
+.card-footer {
+    margin-top: 15px;
+    text-align: center;
+}
+ 
+.card-footer a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+}
+ 
+.card-footer a:hover {
+    text-decoration: underline;
+}
