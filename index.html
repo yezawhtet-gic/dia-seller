@@ -6,137 +6,158 @@
     <title>ID Input Section</title>
     <link rel="stylesheet" href="styles.css" />
     <style>
-      <style>
-  /* General Styling */
-  body {
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f9f9f9;
-    color: #333;
-    margin: 0;
-    padding: 20px;
-  }
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f9f9f9;
+        color: #333;
+        margin: 0;
+        padding: 20px;
+      }
 
-  .id-section {
-    background-color: #fff;
-    border-radius: 12px;
-    padding: 24px;
-    max-width: 600px;
-    margin: 0 auto;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  }
+      .main-container {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
 
-  .id-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-  }
+      .id-section {
+        background-color: #fff;
+        border-radius: 12px;
+        padding: 24px;
+        max-width: 600px;
+        flex: 1 1 300px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
 
-  .step-number {
-    background-color: #007bff;
-    color: #fff;
-    padding: 8px 14px;
-    border-radius: 50%;
-    font-weight: bold;
-    margin-right: 12px;
-    font-size: 16px;
-  }
+      .id-header {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+      }
 
-  .id-title {
-    font-size: 18px;
-    font-weight: bold;
-  }
+      .step-number {
+        background-color: #007bff;
+        color: #fff;
+        padding: 8px 14px;
+        border-radius: 50%;
+        font-weight: bold;
+        margin-right: 12px;
+        font-size: 16px;
+      }
 
-  .id-input-container {
-    display: flex;
-    align-items: center;
-    margin-bottom: 16px;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
+      .id-title {
+        font-size: 18px;
+        font-weight: bold;
+      }
 
-  .id-input {
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    flex: 1 1 200px;
-    min-width: 0;
-  }
+      .id-input-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 16px;
+      }
 
-  .id-input.small {
-    width: 100px;
-  }
+      .id-input {
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        flex: 1 1 200px;
+      }
 
-  .bracket {
-    font-size: 20px;
-    color: #666;
-  }
+      .id-input.small {
+        max-width: 120px;
+      }
 
-  .caption-input {
-    width: 100%;
-    padding: 10px;
-    margin-top: 6px;
-    margin-bottom: 20px;
-    font-size: 16px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-  }
+      .caption-input {
+        width: 100%;
+        padding: 10px;
+        margin-top: 6px;
+        margin-bottom: 20px;
+        font-size: 16px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+      }
 
-  .upload-section {
-    margin-top: 20px;
-  }
+      .upload-section {
+        margin-top: 20px;
+      }
 
-  .upload-section label {
-    font-weight: bold;
-    display: block;
-    margin-bottom: 8px;
-  }
+      .upload-section label {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 8px;
+      }
 
-  #payment-screenshot {
-    padding: 8px;
-  }
+      #payment-screenshot {
+        padding: 8px;
+      }
 
-  /* 🔥 Responsive Grid for Payment Type */
-  .payment-type {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 16px;
-    margin-top: 20px;
-  }
+      .payment-type {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 16px;
+        flex: 1 1 300px;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
 
-  .payment {
-    padding: 10px;
-    text-align: center;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  }
+      .payment {
+        text-align: center;
+        padding: 10px;
+        background-color: #f5f5f5;
+        border-radius: 8px;
+      }
 
-  .payment img {
-    width: 100%;
-    height: auto;
-    margin-top: 8px;
-    border-radius: 6px;
-  }
+      .payment img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        margin-top: 10px;
+        border-radius: 8px;
+      }
 
-  /* Optional: Responsive tweaks */
-  @media (max-width: 600px) {
-    .id-header {
-      flex-direction: column;
-      align-items: flex-start;
-    }
+      h2 {
+        text-align: center;
+        margin-top: 40px;
+        font-size: 22px;
+      }
 
-    .step-number {
-      margin-bottom: 8px;
-    }
-  }
-</style>
+      #card-container {
+        margin-top: 10px;
+        display: flex;
+        gap: 10px;
+      }
 
+      /* Mobile */
+      @media (max-width: 600px) {
+        .id-header {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .step-number {
+          margin-bottom: 8px;
+        }
+
+        .main-container {
+          flex-direction: column;
+        }
+
+        .payment-type {
+          grid-template-columns: 1fr;
+        }
+      }
     </style>
   </head>
   <body>
-    <div style="display: flex; justify-content: center; align-items: center">
-      <!-- ID Input Section -->
+    <div class="main-container">
+      <!-- ID Section -->
       <div class="id-section">
         <div class="id-header">
           <span class="step-number">1</span>
@@ -174,22 +195,16 @@
           <input type="file" id="payment-screenshot" accept="image/*" />
         </div>
       </div>
+
+      <!-- Payment Section -->
       <div class="payment-type">
         <div class="payment">
           <div>kpay</div>
-          <img
-            src="kpay.jpg"
-            style="width: 100%; height: 100%; object-fit: contain;"
-            alt="Loading"
-          />
+          <img src="kpay.jpg" alt="KPay" />
         </div>
         <div class="payment">
           <div>wavepay</div>
-          <img
-            src="wavepay.jpg"
-            style="width: 100%; height: 100%; object-fit: contain;"
-            alt="Loading"
-          />
+          <img src="wavepay.jpg" alt="WavePay" />
         </div>
       </div>
     </div>
